@@ -60,7 +60,8 @@ function upperFirst(str) {
 }
 
 export default function PageButtonsForm({ user, page }) {
-  const pageSavedButtonsKeys = Object.keys(page.buttons);
+  // Check if 'page' is undefined or null, and set an empty object as a fallback
+  const pageSavedButtonsKeys = Object.keys(page?.buttons || {});
   const pageSavedButtonsInfo = pageSavedButtonsKeys.map((k) =>
     allButtons.find((b) => b.key === k)
   );
@@ -110,7 +111,7 @@ export default function PageButtonsForm({ user, page }) {
                 <input
                   placeholder={b.placeholder}
                   name={b.key}
-                  defaultValue={page.buttons[b.key]}
+                  defaultValue={page.buttons ? page.buttons[b.key] : ""}
                   type="text"
                   style={{ marginBottom: "0" }}
                 />
